@@ -1,0 +1,35 @@
+/*
+    This file is part of the KDE project
+    SPDX-FileCopyrightText: 2015-2016 Ralf Habacker <ralf.habacker@freenet.de>
+
+    SPDX-License-Identifier: LGPL-2.1-only OR LGPL-3.0-only OR LicenseRef-KDE-Accepted-LGPL
+*/
+
+#include "loggingcategory.h"
+
+#include <QCoreApplication>
+#include <QProcess>
+
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+    QCoreApplication app(argc, argv);
+
+    const QStringList arguments = app.arguments();
+    if (arguments.count() != 2) {
+        qCCritical(KDocToolsLog) << "wrong argument count";
+        return (1);
+    }
+
+    QProcess meinproc;
+    meinproc.start(QStringLiteral("meinproc5"), QStringList{QStringLiteral("--check"), QStringLiteral("--stdout"), arguments[1]});
+    if (!meinproc.waitForStarted()) {
+        return -2;
+    }
+    if (!meinproc.waitForFinished()) {
+        return -1;
+    }
+    fprintf(stderr, "%s", meinproc.readAllStandardError().constData());
+    return meinproc.exitCode();
+}

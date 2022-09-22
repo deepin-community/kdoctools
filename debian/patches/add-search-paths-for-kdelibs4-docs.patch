@@ -1,0 +1,23 @@
+From: Maximiliano Curia <maxy@gnuservers.com.ar>
+Date: Fri, 14 Jul 2017 23:45:58 +0200
+Subject: add search paths for kdelibs4 docs
+
+This patch was migrated from kio
+(https://anonscm.debian.org/git/pkg-kde/frameworks/kio.git/commit/?id=26acc0174710a967e82b2f070f4e8ac95f8d7292)
+
+Forwarded: no, kdelibs4 path was set in debian/kubuntu packages
+---
+ src/xslt.cpp | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+--- a/src/xslt.cpp
++++ b/src/xslt.cpp
+@@ -489,5 +489,7 @@ QStringList getKDocToolsCatalogs()
+ QStringList KDocTools::documentationDirs()
+ {
+     /* List of paths containing documentation */
+-    return QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("doc/HTML"), QStandardPaths::LocateDirectory);
++    QStringList localDoc = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("doc/HTML"), QStandardPaths::LocateDirectory);
++    localDoc << QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("doc/kde/HTML"), QStandardPaths::LocateDirectory);
++    return localDoc;
+ }

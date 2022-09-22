@@ -1,0 +1,66 @@
+Source: kdoctools
+Section: libs
+Priority: optional
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Uploaders: Aurélien COUDERC <coucouf@debian.org>,
+           Norbert Preining <norbert@preining.info>,
+Build-Depends: cmake (>= 3.16~),
+               debhelper-compat (= 13),
+               docbook-xml (>= 4.5),
+               docbook-xsl,
+               extra-cmake-modules (>= 5.90.0~),
+               libkf5archive-dev (>= 5.90.0~),
+               libkf5i18n-dev (>= 5.90.0~),
+               liburi-perl,
+               libxml2-dev,
+               libxml2-utils,
+               libxslt1-dev,
+               pkg-kde-tools (>= 0.15.15ubuntu1~),
+               qtbase5-dev (>= 5.15.2~),
+Standards-Version: 4.6.0
+Homepage: https://invent.kde.org/frameworks/kdoctools
+Vcs-Browser: https://salsa.debian.org/qt-kde-team/kde/kdoctools
+Vcs-Git: https://salsa.debian.org/qt-kde-team/kde/kdoctools.git
+Rules-Requires-Root: no
+
+Package: kdoctools5
+Section: doc
+Architecture: any
+Multi-Arch: foreign
+Depends: docbook-xml (>= 4.5),
+         docbook-xsl,
+         libxml2-utils,
+         ${misc:Depends},
+         ${shlibs:Depends},
+Description: Tools to generate documentation in various formats from DocBook
+ KDocTools is a set of tools to generate documentation in various formats from
+ DocBook files.
+ .
+ This package is part of KDE Frameworks 5.
+
+Package: libkf5doctools-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: kdoctools5 (= ${binary:Version}),
+         libkf5archive-dev (>= 5.90.0~),
+         libkf5doctools5 (= ${binary:Version}),
+         qtbase5-dev (>= 5.15.2~),
+         ${misc:Depends},
+Description: Development files for kdoctools5
+ KDocTools is a set of tools to generate documentation in various formats from
+ DocBook files.
+ .
+ This package is part of KDE Frameworks 5.
+ .
+ This package contains the development files for kdoctools5.
+
+Package: libkf5doctools5
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Tools to generate documentation in various formats from DocBook
+ KDocTools is a set of tools to generate documentation in various
+ formats from DocBook files.
+ .
+ This package is part of KDE Frameworks 5.

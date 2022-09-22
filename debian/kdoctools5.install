@@ -1,0 +1,13 @@
+usr/bin/checkXML5
+usr/bin/meinproc5
+usr/share/doc/HTML/*/kdoctools5-common/
+usr/share/kf5/kdoctools/
+usr/share/locale/*/*/kdoctools5.mo
+usr/share/man/*/man1/checkXML5.1
+usr/share/man/*/man1/meinproc5.1
+usr/share/man/*/man7/kf5options.7
+usr/share/man/*/man7/qt5options.7
+usr/share/man/man1/checkXML5.1
+usr/share/man/man1/meinproc5.1
+usr/share/man/man7/kf5options.7
+usr/share/man/man7/qt5options.7
