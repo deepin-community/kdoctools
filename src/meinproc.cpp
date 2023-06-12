@@ -38,66 +38,15 @@ using namespace KDocTools;
 extern "C" int xmlLoadExtDtdDefaultValue;
 #endif
 
-class MyPair
-{
-public:
-    QString word;
-    int base;
-};
-
-typedef QList<MyPair> PairList;
-
 #define DIE(x)                                                                                                                                                 \
     do {                                                                                                                                                       \
         qCCritical(KDocToolsLog) << "Error:" << x;                                                                                                             \
         exit(1);                                                                                                                                               \
     } while (0)
 
-void parseEntry(PairList &list, xmlNodePtr cur, int base)
-{
-    if (!cur) {
-        return;
-    }
-
-    base += atoi((const char *)xmlGetProp(cur, (const xmlChar *)"header"));
-    if (base > 10) { // 10 is the maximum
-        base = 10;
-    }
-
-    /* We don't care what the top level element name is */
-    cur = cur->xmlChildrenNode;
-    while (cur != nullptr) {
-        if (cur->type == XML_TEXT_NODE) {
-            QString words = QString::fromUtf8((char *)cur->content);
-            const QStringList wlist = words.simplified().split(QLatin1Char(' '), Qt::SkipEmptyParts);
-            for (QStringList::ConstIterator it = wlist.begin(); it != wlist.end(); ++it) {
-                MyPair m;
-                m.word = *it;
-                m.base = base;
-                list.append(m);
-            }
-        } else if (!xmlStrcmp(cur->name, (const xmlChar *)"entry")) {
-            parseEntry(list, cur, base);
-        }
-
-        cur = cur->next;
-    }
-}
-
 int main(int argc, char **argv)
 {
     // xsltSetGenericDebugFunc(stderr, NULL);
-
-    /*options.add("stylesheet <xsl>", ki18n("Stylesheet to use"));
-    options.add("stdout", ki18n("Output whole document to stdout"));
-    options.add("o");
-    options.add("output <file>", ki18n("Output whole document to file"));
-    options.add("htdig", ki18n("Create a ht://dig compatible index"));
-    options.add("check", ki18n("Check the document for validity"));
-    options.add("cache <file>", ki18n("Create a cache file for the document"));
-    options.add("srcdir <dir>", ki18n("Set the srcdir, for kdelibs"));
-    options.add("param <key>=<value>", ki18n("Parameters to pass to the stylesheet"));
-    options.add("+xml", ki18n("The file to transform"));*/
 
     QCoreApplication app(argc, argv);
     app.setApplicationName(QStringLiteral("meinproc"));
@@ -126,7 +75,8 @@ int main(int argc, char **argv)
     parser.addPositionalArgument(QStringLiteral("xml"), QCoreApplication::translate("main", "The file to transform"));
     parser.process(app);
 
-    if (parser.positionalArguments().count() != 1) {
+    const QStringList filesToRead = parser.positionalArguments();
+    if (filesToRead.count() != 1) {
         parser.showHelp();
         return (1);
     }
@@ -142,7 +92,7 @@ int main(int argc, char **argv)
 
     LIBXML_TEST_VERSION
 
-    const QString checkFilename = parser.positionalArguments().first();
+    const QString checkFilename(filesToRead.first());
     CheckFileResult ckr = checkFile(checkFilename);
     switch (ckr) {
     case CheckFileSuccess:
@@ -183,10 +133,7 @@ int main(int argc, char **argv)
     QVector<const char *> params;
     {
         const QStringList paramList = parser.values(QStringLiteral("param"));
-        QStringList::ConstIterator it = paramList.constBegin();
-        QStringList::ConstIterator end = paramList.constEnd();
-        for (; it != end; ++it) {
-            const QString tuple = *it;
+        for (const QString &tuple : paramList) {
             const int ch = tuple.indexOf(QLatin1Char('='));
             if (ch == -1) {
                 DIE("Key-Value tuple" << tuple << "lacks a '='!");

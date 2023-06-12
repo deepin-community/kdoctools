@@ -1,1 +1,2 @@
+upstream_kdoctools_install-fix-doc-detection-in-path-with-spe.patch
 add-search-paths-for-kdelibs4-docs.patch

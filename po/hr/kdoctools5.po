@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_help4 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-02-25 02:22+0100\n"
+"POT-Creation-Date: 2022-01-02 00:42+0000\n"
 "PO-Revision-Date: 2009-06-21 20:18+0200\n"
 "Last-Translator: Andrej Dundović <adundovi@gmail.com>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -20,22 +20,99 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: xslt.cpp:138
+#: xslt.cpp:140
 #, kde-format
 msgid "Parsing stylesheet"
 msgstr "Raščlanjenje stilskog oblikovanja"
 
-#: xslt.cpp:161
+#: xslt.cpp:163
 #, kde-format
 msgid "Parsing document"
 msgstr "Raščlanjenje dokumenta"
 
-#: xslt.cpp:186
+#: xslt.cpp:188
 #, kde-format
 msgid "Applying stylesheet"
 msgstr "Primjenjivanje stilskog oblikovanja"
 
-#: xslt.cpp:194
+#: xslt.cpp:196
 #, kde-format
 msgid "Writing document"
 msgstr "Zapisivanje dokumenta"
+
+#~ msgid "Output file"
+#~ msgstr "Izlazna datoteka"
+
+#~ msgid "genshortcutents"
+#~ msgstr "genshortcutents"
+
+#~ msgid "Generates DocBook entities for key shortcuts of standard actions"
+#~ msgstr "Generira DocBook stavke za tipkovničke prečice standardnih akcija"
+
+#~ msgid "There is no documentation available for %1."
+#~ msgstr "Za %1 ne postoji raspoloživa dokumentacija."
+
+#~ msgid "Looking up correct file"
+#~ msgstr "Traženje ispravne datoteke"
+
+#~ msgid "Preparing document"
+#~ msgstr "Pripremanje dokumenta"
+
+#~ msgid "The requested help file could not be parsed:<br />%1"
+#~ msgstr "Zahtjevanu datoteku pomoći nije moguće raščlaniti:<br />%1"
+
+#~ msgid "Saving to cache"
+#~ msgstr "Snimanje u međuspremnik"
+
+#~ msgid "Using cached version"
+#~ msgstr "Upotrebljavanje verzije iz međuspremnika"
+
+#~ msgid "Looking up section"
+#~ msgstr "Traženje poglavlja"
+
+#~ msgid "Could not find filename %1 in %2."
+#~ msgstr "Datoteku naziva %1 pri %2  nije moguće pronaći."
+
+#~ msgid "Stylesheet to use"
+#~ msgstr "Odabrano stilsko oblikovanje"
+
+#~ msgid "Output whole document to stdout"
+#~ msgstr "Cjelokupni dokument izvezi u 'stdout'"
+
+#~ msgid "Output whole document to file"
+#~ msgstr "Cjelokupni dokument izvezi u datoteku"
+
+#~ msgid "Create a ht://dig compatible index"
+#~ msgstr "Izradi indeks kompatibilan s ht://dig"
+
+#~ msgid "Check the document for validity"
+#~ msgstr "Provjeri valjanost dokumenta"
+
+#~ msgid "Create a cache file for the document"
+#~ msgstr "Izradi datoteku međuspremnika za dokument"
+
+#~ msgid "Set the srcdir, for kdelibs"
+#~ msgstr "Postavi 'srcdir', za 'kdelibs'"
+
+#~ msgid "Parameters to pass to the stylesheet"
+#~ msgstr "Parametri koje treba proslijediti u stilsko oblikovanje"
+
+#~ msgid "The file to transform"
+#~ msgstr "Datoteka za pretvaranje"
+
+#~ msgid "XML-Translator"
+#~ msgstr "XML prevoditelj"
+
+#~ msgid "KDE Translator for XML"
+#~ msgstr "KDE prevoditelj za XML"
+
+#~ msgid "Could not write to cache file %1."
+#~ msgstr "Zapisivanje u datoteku međuspremnika %1 nije moguće."
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Renato Pavičić, Andrej Dundovic"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "renato@translator-shop.org, adundovi@gmail.com"

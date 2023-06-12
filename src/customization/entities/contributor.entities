@@ -299,6 +299,8 @@
 <!ENTITY Roger.Lum.mail '<email>rogerlum@gmail.com</email>'>
 <!ENTITY Anders.Lund '<personname><firstname>Anders</firstname><surname>Lund</surname></personname>'>
 <!ENTITY Anders.Lund.mail '<email>anders@alweb.dk</email>'>
+<!ENTITY Han.Young '<personname><firstname>Han</firstname><surname>Young</surname></personname>'>
+<!ENTITY Han.Young.mail '<email>hanyoung@protonmail.com</email>'>
 
 <!ENTITY Anne-Marie.Mahfouf '<personname><firstname>Anne-Marie</firstname><surname>Mahfouf</surname></personname>'>
 <!ENTITY Anne-Marie.Mahfouf.mail '<email>annma@kde.org</email>'>
@@ -390,6 +392,8 @@
 <!ENTITY Ravikiran.Rajagopal.mail '<email>ravi@kde.org</email>'>
 <!ENTITY Artur.Rataj '<personname><firstname>Artur</firstname><surname>Rataj</surname></personname>'>
 <!ENTITY Artur.Rataj.mail '<email>art@zeus.polsl.gliwice.pl</email>'>
+<!ENTITY Pablo.Rauzy '<firstname>Pablo</firstname> <surname>Rauzy</surname>'>
+<!ENTITY Pablo.Rauzy.mail '<email>r .at. uzy.me</email>'>
 <!ENTITY Roman.Razilov '<personname><firstname>Roman</firstname><surname>Razilov</surname></personname>'>
 <!ENTITY Roman.Razilov.mail '<email>Roman.Razilov@gmx.de</email>'>
 <!ENTITY Michael.Reiher '<personname><firstname>Michael</firstname><surname>Reiher</surname></personname>'>

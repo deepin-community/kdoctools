@@ -1,21 +1,26 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(KF_VERSION "5.90.0") # handled by release scripts
-set(KF_DEP_VERSION "5.90.0") # handled by release scripts
+set(KF_VERSION "5.103.0") # handled by release scripts
+set(KF_DEP_VERSION "5.103.0") # handled by release scripts
 project(KDocTools VERSION ${KF_VERSION})
 
 # ECM setup
 include(FeatureSummary)
-find_package(ECM 5.90.0  NO_MODULE)
+find_package(ECM 5.103.0  NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://commits.kde.org/extra-cmake-modules")
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
 
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 
+include(KDEGitCommitHooks)
 include(ECMSetupVersion)
 include(ECMMarkNonGuiExecutable)
 include(ECMQtDeclareLoggingCategory)
+include(ECMDeprecationSettings)
 include(CMakePackageConfigHelpers)
 include(GenerateExportHeader)
 include(ECMAddQch)
@@ -33,11 +38,6 @@ add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt 
 # Dependencies
 set(REQUIRED_QT_VERSION 5.15.2)
 find_package(Qt${QT_MAJOR_VERSION}Core ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
-
-include(KDEInstallDirs)
-include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
-include(KDECMakeSettings)
-include(KDEGitCommitHooks)
 
 # KF5 frameworks
 if (NOT MEINPROC_NO_KARCHIVE)
@@ -91,12 +91,15 @@ else ()
 endif ()
 include(KF5DocToolsMacros.cmake)
 
-set(KDOCTOOLS_LANGUAGES_LIST af bg ca cs da de el en-GB en eo es et fi fo fr gl he hu id it ja ko lt nds nl nn no pl pt-BR pt ro ru sk sl sq sr sr@latin sr@ijekavian sr@ijekavianlatin sv th tr uk wa xh xx zh-CN zh-TW)
+set(KDOCTOOLS_LANGUAGES_LIST af bg ca ca@valencia cs da de el en-GB en eo es et fi fo fr gl he hu id it ja ko lt nds nl nn no pl pt-BR pt ro ru sk sl sq sr sr@latin sr@ijekavian sr@ijekavianlatin sv th tr uk wa xh xx zh-CN zh-TW)
 
 set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5DocTools")
 add_definitions(-DTRANSLATION_DOMAIN=\"kdoctools5\")
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f02)
-add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055000)
+ecm_set_disabled_deprecation_versions(
+    QT 5.15.2
+    KF 5.97
+)
+
 if (KF5I18n_FOUND)
     ki18n_install(po)
     kdoctools_install(po)

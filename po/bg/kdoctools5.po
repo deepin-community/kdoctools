@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_help4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-02-25 02:22+0100\n"
+"POT-Creation-Date: 2022-01-02 00:42+0000\n"
 "PO-Revision-Date: 2007-11-28 23:54+0000\n"
 "Last-Translator: Zlatko Popov <zlatkopopov@fsa-bg.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -17,22 +17,22 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: xslt.cpp:138
+#: xslt.cpp:140
 #, kde-format
 msgid "Parsing stylesheet"
 msgstr "Анализ на стиловия формат"
 
-#: xslt.cpp:161
+#: xslt.cpp:163
 #, kde-format
 msgid "Parsing document"
 msgstr "Анализ на документа"
 
-#: xslt.cpp:186
+#: xslt.cpp:188
 #, kde-format
 msgid "Applying stylesheet"
 msgstr "Прилагане на стиловия формат"
 
-#: xslt.cpp:194
+#: xslt.cpp:196
 #, kde-format
 msgid "Writing document"
 msgstr "Запис на документа"
