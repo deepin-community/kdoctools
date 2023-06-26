@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_help4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-02-25 02:22+0100\n"
+"POT-Creation-Date: 2022-01-02 00:42+0000\n"
 "PO-Revision-Date: 2006-10-01 21:03+0000\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -17,22 +17,76 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: xslt.cpp:138
+#: xslt.cpp:140
 #, kde-format
 msgid "Parsing stylesheet"
 msgstr ""
 
-#: xslt.cpp:161
+#: xslt.cpp:163
 #, kde-format
 msgid "Parsing document"
 msgstr ""
 
-#: xslt.cpp:186
+#: xslt.cpp:188
 #, kde-format
 msgid "Applying stylesheet"
 msgstr "Staylshit qoʻllanilmoqda"
 
-#: xslt.cpp:194
+#: xslt.cpp:196
 #, kde-format
 msgid "Writing document"
 msgstr "Hujjat yozilmoqda"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Mashrab Quvatov"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "kmashrab@uni-bremen.de"
+
+#~ msgid "There is no documentation available for %1."
+#~ msgstr "%1 uchun qoʻllanma mavjud emas."
+
+#~ msgid "Looking up correct file"
+#~ msgstr "Kerakli fayl qidirilmoqda"
+
+#~ msgid "Preparing document"
+#~ msgstr "Hujjat tayyorlanmoqda"
+
+#~ msgid "Saving to cache"
+#~ msgstr "Keshga saqlanmoqda"
+
+#~ msgid "Using cached version"
+#~ msgstr "Keshga saqlangan hujjatdan foydalanilmoqda"
+
+#~ msgid "Looking up section"
+#~ msgstr "Boʻlim qidirilmoqda"
+
+#~ msgid "Could not find filename %1 in %2."
+#~ msgstr "%1 fayli %2 jildida topilmadi."
+
+#~ msgid "Stylesheet to use"
+#~ msgstr "Foydalanish uchun staylshit"
+
+#, fuzzy
+#~ msgid "Output whole document to stdout"
+#~ msgstr "butun hujjatni faylga saqlash"
+
+#~ msgid "Output whole document to file"
+#~ msgstr "Butun hujjatni faylga saqlash"
+
+#~ msgid "Create a ht://dig compatible index"
+#~ msgstr "ht://dig bilan mos keladigan indeksni yaratish"
+
+#~ msgid "Check the document for validity"
+#~ msgstr "Hujjatni tekshirish"
+
+#~ msgid "Create a cache file for the document"
+#~ msgstr "Hujjat uchun kesh faylini yaratish"
+
+#~ msgid "The file to transform"
+#~ msgstr "Aylantirish uchun fayl"
+
+#~ msgid "Could not write to cache file %1."
+#~ msgstr "%1 kesh fayliga yozib boʻlmadi."

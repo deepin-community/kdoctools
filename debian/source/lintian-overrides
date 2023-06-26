@@ -1,0 +1,5 @@
+# These HTML files have long lines but they’re modifiable sources as they are
+kdoctools source: source-is-missing [common/de/fdl-translated.html]
+kdoctools source: source-is-missing [common/en/ccbysa4-license.html]
+kdoctools source: source-is-missing [common/zh_TW/gpl-translated.html]
+kdoctools source: source-is-missing [common/zh_TW/lgpl-translated.html]

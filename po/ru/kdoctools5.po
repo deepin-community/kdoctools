@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_help4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-02-25 02:22+0100\n"
+"POT-Creation-Date: 2022-01-02 00:42+0000\n"
 "PO-Revision-Date: 2010-08-20 18:39+0400\n"
 "Last-Translator: Alexander Potashev <aspotashev@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -27,22 +27,100 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: xslt.cpp:138
+#: xslt.cpp:140
 #, kde-format
 msgid "Parsing stylesheet"
 msgstr "Анализ таблицы стилей"
 
-#: xslt.cpp:161
+#: xslt.cpp:163
 #, kde-format
 msgid "Parsing document"
 msgstr "Анализ документа"
 
-#: xslt.cpp:186
+#: xslt.cpp:188
 #, kde-format
 msgid "Applying stylesheet"
 msgstr "Применение таблицы стилей"
 
-#: xslt.cpp:194
+#: xslt.cpp:196
 #, kde-format
 msgid "Writing document"
 msgstr "Сохранение документа"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Иван Кашуков"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "dolphin210@yandex.ru"
+
+#~ msgid "Output file"
+#~ msgstr "Файл вывода"
+
+#~ msgid "genshortcutents"
+#~ msgstr "genshortcutents"
+
+#~ msgid "Generates DocBook entities for key shortcuts of standard actions"
+#~ msgstr ""
+#~ "Генерирует сущности DocBook для комбинаций клавиш стандартных действий"
+
+#~ msgid "There is no documentation available for %1."
+#~ msgstr "Документация по %1 отсутствует."
+
+#~ msgid "Looking up correct file"
+#~ msgstr "Поиск нужного файла"
+
+#~ msgid "Preparing document"
+#~ msgstr "Подготовка документа"
+
+#~ msgid "The requested help file could not be parsed:<br />%1"
+#~ msgstr "Невозможно обработать файл справки:<br />%1"
+
+#~ msgid "Saving to cache"
+#~ msgstr "Сохранение в кэш"
+
+#~ msgid "Using cached version"
+#~ msgstr "Использование версии из кэша"
+
+#~ msgid "Looking up section"
+#~ msgstr "Поиск раздела"
+
+#~ msgid "Could not find filename %1 in %2."
+#~ msgstr "Невозможно найти файл %1 в %2."
+
+#~ msgid "Stylesheet to use"
+#~ msgstr "Используемая таблица стилей"
+
+#~ msgid "Output whole document to stdout"
+#~ msgstr "Вывести документ полностью на стандартный вывод"
+
+#~ msgid "Output whole document to file"
+#~ msgstr "Запись документа в файл"
+
+#~ msgid "Create a ht://dig compatible index"
+#~ msgstr "Создать индекс, совместимый с ht://dig"
+
+#~ msgid "Check the document for validity"
+#~ msgstr "Проверить правильность документа"
+
+#~ msgid "Create a cache file for the document"
+#~ msgstr "Создать кэш-файл для этого документа"
+
+#~ msgid "Set the srcdir, for kdelibs"
+#~ msgstr "Установить каталог исходного кода kdelibs"
+
+#~ msgid "Parameters to pass to the stylesheet"
+#~ msgstr "Параметры, передаваемые таблице стилей"
+
+#~ msgid "The file to transform"
+#~ msgstr "Преобразуемый файл"
+
+#~ msgid "XML-Translator"
+#~ msgstr "Транслятор XML"
+
+#~ msgid "KDE Translator for XML"
+#~ msgstr "XML-транслятор KDE"
+
+#~ msgid "Could not write to cache file %1."
+#~ msgstr "Невозможно записать кэш-файл %1."

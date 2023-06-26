@@ -1,0 +1,127 @@
+From 446d93c4289dadb9f6a460a3bc18eb17e15575e9 Mon Sep 17 00:00:00 2001
+From: Pino Toscano <pino@kde.org>
+Date: Sun, 26 Feb 2023 11:48:11 +0100
+Subject: [PATCH] kdoctools_install: fix doc detection in path with special
+ chars
+
+${lang_dir} represents the absolute path of a directory within the
+sources that contains the files for a language; if this path contains
+special characters (e.g. "+"), then using it in a regex such as
+  "${lang_dir}/docs/(.*)/index.docbook"
+will not produce matches.
+
+To avoid special characters getting in the way of the lookup for
+manpages or index.docbook files, restrict the results of the glob search
+relative to ${lang_dir}, making sure to compose full paths back when
+invoking kdoctools_create_manpage() and kdoctools_create_handbook().
+
+To make sure it can be tested and it does not regress, rename the
+existing "kdoctools-install" autotest to "kdoctools+install".
+
+(cherry picked from commit b3cc46ca3d643ce88d984daf0148ecc70ae050eb)
+---
+ KF5DocToolsMacros.cmake                                |  8 ++++----
+ autotests/CMakeLists.txt                               | 10 +++++-----
+ .../CMakeLists.txt                                     |  0
+ .../po/es/docs/foobar/index.docbook                    |  0
+ .../po/es/docs/kioslave5/fooslave/index.docbook        |  0
+ .../po/es/docs/man-kjscmd.1.docbook                    |  0
+ .../po/fr/docs/foobar/index.docbook                    |  0
+ .../po/fr/docs/man-kjscmd.1.docbook                    |  0
+ .../test.cmake                                         |  0
+ 9 files changed, 9 insertions(+), 9 deletions(-)
+ rename autotests/{kdoctools-install => kdoctools+install}/CMakeLists.txt (100%)
+ rename autotests/{kdoctools-install => kdoctools+install}/po/es/docs/foobar/index.docbook (100%)
+ rename autotests/{kdoctools-install => kdoctools+install}/po/es/docs/kioslave5/fooslave/index.docbook (100%)
+ rename autotests/{kdoctools-install => kdoctools+install}/po/es/docs/man-kjscmd.1.docbook (100%)
+ rename autotests/{kdoctools-install => kdoctools+install}/po/fr/docs/foobar/index.docbook (100%)
+ rename autotests/{kdoctools-install => kdoctools+install}/po/fr/docs/man-kjscmd.1.docbook (100%)
+ rename autotests/{kdoctools-install => kdoctools+install}/test.cmake (100%)
+
+diff --git a/KF5DocToolsMacros.cmake b/KF5DocToolsMacros.cmake
+index 0250770..4308319 100644
+--- a/KF5DocToolsMacros.cmake
++++ b/KF5DocToolsMacros.cmake
+@@ -227,17 +227,17 @@ function(kdoctools_install podir)
+     foreach(lang_dir ${lang_dirs})
+         get_filename_component(lang ${lang_dir} NAME)
+ 
+-        file(GLOB_RECURSE docbooks "${lang_dir}/docs/*.docbook")
++        file(GLOB_RECURSE docbooks RELATIVE "${lang_dir}" "${lang_dir}/docs/*.docbook")
+         foreach(docbook ${docbooks})
+             string(REGEX MATCH "\\.([0-9])\\.docbook" match ${docbook})
+             if (match)
+-                kdoctools_create_manpage(${docbook} ${CMAKE_MATCH_1}
++                kdoctools_create_manpage("${lang_dir}/${docbook}" ${CMAKE_MATCH_1}
+                     INSTALL_DESTINATION ${KDE_INSTALL_MANDIR}/${lang}
+                 )
+             else()
+-                string(REGEX MATCH "${lang_dir}/docs/(.*)/index.docbook" match ${docbook})
++                string(REGEX MATCH "^docs/(.*)/index.docbook" match ${docbook})
+                 if (match)
+-                    kdoctools_create_handbook(${docbook}
++                    kdoctools_create_handbook("${lang_dir}/${docbook}"
+                         INSTALL_DESTINATION ${KDE_INSTALL_DOCBUNDLEDIR}/${lang}
+                         SUBDIR ${CMAKE_MATCH_1}
+                     )
+diff --git a/autotests/CMakeLists.txt b/autotests/CMakeLists.txt
+index b144b83..4619cb1 100644
+--- a/autotests/CMakeLists.txt
++++ b/autotests/CMakeLists.txt
+@@ -14,14 +14,14 @@ endif()
+ 
+ add_test(kdoctools_install ${CMAKE_CTEST_COMMAND}
+     --build-and-test
+-    "${CMAKE_CURRENT_SOURCE_DIR}/kdoctools-install"
+-    "${CMAKE_CURRENT_BINARY_DIR}/kdoctools-install"
++    "${CMAKE_CURRENT_SOURCE_DIR}/kdoctools+install"
++    "${CMAKE_CURRENT_BINARY_DIR}/kdoctools+install"
+     --build-generator ${CMAKE_GENERATOR}
+     --build-makeprogram ${CMAKE_MAKE_PROGRAM}
+     --build-target install
+     --build-options
+         "-DCMAKE_MODULE_PATH=${CMAKE_MODULE_PATH}"
+-        "-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CURRENT_BINARY_DIR}/kdoctools-install/destdir"
++        "-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CURRENT_BINARY_DIR}/kdoctools+install/destdir"
+         "-DKF5DocTools_DIR=${CMAKE_BINARY_DIR}/cmake"
+         "-DKDocTools_BINARY_DIR=${CMAKE_BINARY_DIR}"
+         "-DKDOCTOOLS_CUSTOMIZATION_DIR=${KDOCTOOLS_CUSTOMIZATION_DIR}"
+@@ -32,5 +32,5 @@ add_test(kdoctools_install ${CMAKE_CTEST_COMMAND}
+     --test-command ${CMAKE_COMMAND}
+         "-DKDE_INSTALL_MANDIR=${KDE_INSTALL_MANDIR}"
+         "-DKDE_INSTALL_DOCBUNDLEDIR=${KDE_INSTALL_DOCBUNDLEDIR}"
+-        "-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CURRENT_BINARY_DIR}/kdoctools-install/destdir"
+-        -P "${CMAKE_CURRENT_SOURCE_DIR}/kdoctools-install/test.cmake")
++        "-DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_CURRENT_BINARY_DIR}/kdoctools+install/destdir"
++        -P "${CMAKE_CURRENT_SOURCE_DIR}/kdoctools+install/test.cmake")
+diff --git a/autotests/kdoctools-install/CMakeLists.txt b/autotests/kdoctools+install/CMakeLists.txt
+similarity index 100%
+rename from autotests/kdoctools-install/CMakeLists.txt
+rename to autotests/kdoctools+install/CMakeLists.txt
+diff --git a/autotests/kdoctools-install/po/es/docs/foobar/index.docbook b/autotests/kdoctools+install/po/es/docs/foobar/index.docbook
+similarity index 100%
+rename from autotests/kdoctools-install/po/es/docs/foobar/index.docbook
+rename to autotests/kdoctools+install/po/es/docs/foobar/index.docbook
+diff --git a/autotests/kdoctools-install/po/es/docs/kioslave5/fooslave/index.docbook b/autotests/kdoctools+install/po/es/docs/kioslave5/fooslave/index.docbook
+similarity index 100%
+rename from autotests/kdoctools-install/po/es/docs/kioslave5/fooslave/index.docbook
+rename to autotests/kdoctools+install/po/es/docs/kioslave5/fooslave/index.docbook
+diff --git a/autotests/kdoctools-install/po/es/docs/man-kjscmd.1.docbook b/autotests/kdoctools+install/po/es/docs/man-kjscmd.1.docbook
+similarity index 100%
+rename from autotests/kdoctools-install/po/es/docs/man-kjscmd.1.docbook
+rename to autotests/kdoctools+install/po/es/docs/man-kjscmd.1.docbook
+diff --git a/autotests/kdoctools-install/po/fr/docs/foobar/index.docbook b/autotests/kdoctools+install/po/fr/docs/foobar/index.docbook
+similarity index 100%
+rename from autotests/kdoctools-install/po/fr/docs/foobar/index.docbook
+rename to autotests/kdoctools+install/po/fr/docs/foobar/index.docbook
+diff --git a/autotests/kdoctools-install/po/fr/docs/man-kjscmd.1.docbook b/autotests/kdoctools+install/po/fr/docs/man-kjscmd.1.docbook
+similarity index 100%
+rename from autotests/kdoctools-install/po/fr/docs/man-kjscmd.1.docbook
+rename to autotests/kdoctools+install/po/fr/docs/man-kjscmd.1.docbook
+diff --git a/autotests/kdoctools-install/test.cmake b/autotests/kdoctools+install/test.cmake
+similarity index 100%
+rename from autotests/kdoctools-install/test.cmake
+rename to autotests/kdoctools+install/test.cmake
+-- 
+2.39.2
+
